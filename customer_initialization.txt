@@ -1,0 +1,95 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+string manipulateString(string &str)
+{
+
+	// looping through each character of string
+	for (int i = 0; i < str.length(); i++)
+	 {
+
+		// storing integer ASCII value of
+		// the character in 'asc'
+		int asc = str[i];
+
+		// 'rem' contains coded value which
+		// needs to be rounded to 26
+		int rem = asc - (26 - (str[i] - 'a'));
+
+		// converting 'rem' character in range
+		// 0-25 and storing in 'm'
+		int m = rem % 26;
+
+		// printing character by adding ascii value of 'a'
+		// so that it becomes in the desired range i.e. a-z
+		str[i] = (char)(m + 'a');
+	}
+	return str;
+}
+
+
+int main()
+{
+	
+	
+	
+	string phno;
+	char mailid[100];
+	char name[100];
+	string pass,encpass;
+	ofstream file_;
+	int choice=0;
+	
+    
+    // Function to return the modified string
+  
+	file_.open("zusers_db.txt",std::ios_base::app);
+	
+	file_<<"------------------------------\n";
+	file_<<"------------------------------\n";
+	file_<<"-----Z-CUSTOMER'S DATABASE----\n";
+	file_<<"------------------------------\n";
+	file_<<"------------------------------\n";
+	file_<<"UserName/Email\t\t\tEncryptedPwd\t\t\tName\t\t\tMobile\n";
+	
+	if(file_.is_open() )
+	
+	
+
+	
+	
+	    
+		cout<<"***EXTRACTING DETAILS****\n";
+		do
+		
+		{
+		 file_<<"\n";
+	     cout<<"enter mail id:";
+				cin>>mailid;
+				file_<<mailid;
+			    file_<<"\t\t\t\t\t";
+			    
+	    cout<<"enter password:";
+				cin>>pass;
+			    encpass=manipulateString(pass);
+		        file_<<encpass;
+		        file_<<"\t\t\t\t\t";
+			    
+		cout<<"Enter Your Name:";
+		        cin>>name;
+		        file_<<name;
+		        file_<<"\t\t\t\t\t";
+		        
+							  
+		cout<<"Enter User phone number:";
+		        cin>>phno;
+		        file_<<phno;
+		        file_<<"\t\t\t\t\t";
+	      cout<<"\nDo you want to continue(press 1 to continue:)";
+          cin>>choice;
+      }while(choice==1);
+      
+	file_.close();
+	return 0;
+	std::cin.get();
+}

@@ -1,0 +1,141 @@
+
+#include <string>
+#include <fstream>
+using namespace std;
+#include <iostream>
+
+
+using namespace std;
+
+int main() {
+
+  string login;
+  string user;
+  int login_times;
+  string password_login;
+  string password;
+  
+  int command;
+    cout<<"------------------------------\n";
+	cout<<"------------------------------\n";
+	cout<<"-----Z-CUSTOMER'S DATABASE----\n";
+	cout<<"------------------------------\n";
+	cout<<"------------------------------\n";
+
+  cout << "exit(1)/login(2)/sign-up(3)"<<endl<<"Enter Option: ";
+  cin >> command;
+
+
+
+    if(command == 3){
+      cout << "\n\n"<<endl;
+      cout << "SIGN-UP"<<endl<<"----------------"<<endl;
+      cout <<"Enter User Name: ";
+      cin >> user;
+      cout <<"password: ";
+      cin >> password; 
+
+      cout << "\n\n";
+      cout << "Signed-up Successfully!"<<endl;
+      cout << "\n\n";
+  }
+ else if(command == 2){
+ 	
+ 	 string substring,name;   // declaring subtring variable.
+   
+   cout<<"Enter User name:";
+   cin>>name;
+   cout<<"Enter password"<<endl;  
+    
+   cin>>substring;      //taking subtring as input.
+   
+  ifstream file_text("zusers_db.txt");  // creating file_text object of ifstream type.
+  
+  string x;   
+  
+  bool ans=false;   // declaring ans variable which will get information if substring present or not.
+  
+  int line=1;   // it will count line and give an answer on which line we get a substring.
+  
+  if (file_text.is_open())       //is_open open the text file.
+  {
+    while ( getline (file_text,x) )    
+    {
+      if (x.find(substring, 0) != string::npos) {
+        {
+          
+          cout<<"Aldready a User!! "<<endl;
+          ans=true;     // if substring present make ans variable true.
+    }
+    
+    line++;
+    }
+    file_text.close(); //to close text file.
+  }
+}
+  else 
+  cout << "ERROR"; 
+  
+  if(!ans)   // if subtring not present.
+  cout<<"Not yet signed-up??"<<endl;
+  
+  //to limit the usage of login page by incorrect input
+ 	 
+      login_times = 3;
+      while(login_times > 0){
+        
+
+        cout << "\n\n";
+        cout << "Login"<<endl<<"_____";
+        cout << "\n";
+
+        cout << "login: ";
+        cin >> login;
+        cout << "Password: ";
+        cin >> password_login;
+
+        
+
+        
+
+        if(login == user && password_login == password){
+          cout << "loged in Successfully!"<<endl;
+          cout << "Welcome"<<user<<"!";
+          
+          break;
+
+        }
+        else if(login != user && password_login == password){
+
+          cout << "username is incorrect!"<<endl;
+          login_times--;
+          
+        }
+
+        else if(login == user && password_login != password){
+
+          cout << "password is incorrect!"<<endl;
+          login_times--;
+          
+        }
+        else{
+          cout << "Everything is incorrect!"<<endl;
+          login_times--;
+        }
+
+        
+
+        
+
+
+      }
+      cout << "you have entered wrong details for more than 3 times, try after sometime!!!";
+    
+    }
+   
+   else if(command==1)
+   {
+   	exit(1);
+   }
+    return 0;
+}

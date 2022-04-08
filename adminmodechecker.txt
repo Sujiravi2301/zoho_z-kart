@@ -1,0 +1,54 @@
+
+#include <string>
+#include <fstream>
+using namespace std;
+#include <iostream>
+//code to check if login name is admin@zoho.com and password "xyzzy"
+
+
+using namespace std;
+
+int main() {
+
+
+
+	 string substring,name;   // declaring subtring variable.
+   
+   cout<<"Enter User name:";
+   cin>>name;
+   cout<<"Enter password"<<endl;  
+    
+   cin>>substring;      //taking subtring as input.
+   
+  ifstream file_text("zusers_db.txt");  // creating file_text object of ifstream type.
+  
+  string x;   
+  
+  bool ans=false;   // declaring ans variable which will get information if substring present or not.
+  
+  int line=1;   // it will count line and give an answer on which line we get a substring.
+  
+  if (file_text.is_open())       //is_open open the text file.
+  {
+    while ( getline (file_text,x) )    
+    {
+      if (x.find(substring, 0) != string::npos) {
+        {
+          
+          cout<<"Aldready a User!! "<<endl;
+          ans=true;     // if substring present make ans variable true.
+    }
+    
+    line++;
+    }
+    file_text.close(); //to close text file.
+  }
+}
+  else 
+  cout << "ERROR"; 
+  
+  if(!ans)   // if subtring not present.
+  cout<<"Not yet a admin??"<<endl;
+  
+  return 0;
+}

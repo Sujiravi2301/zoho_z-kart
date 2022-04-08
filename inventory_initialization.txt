@@ -1,0 +1,59 @@
+
+	
+	file_<<"------------------------------\n";
+	file_<<"------------------------------\n";
+	file_<<"-----Z-KART'S DATABASE----\n";
+	file_<<"------------------------------\n";
+	file_<<"------------------------------\n";
+	file_<<"category\t\t\tmodel\t\t\tBrand\t\t\tPrice\t\t\tStock\t\t\t\n";
+	
+	
+	file_.open("zkart_db.txt",std::ios_base::app);
+	
+	if(file_.is_open() )
+	
+	
+
+	
+	
+	    
+		cout<<"***EXTRACTING DETAILS****\n";
+		do
+		
+		{
+		 file_<<"\n";
+	     cout<<"enter category:";
+				cin>>category;
+				file_<<category;
+			    file_<<"\t\t\t";
+			    
+	    cout<<"enter model:";
+				cin>>model;
+		        file_<<model;
+		        file_<<"\t\t\t";
+			    
+		cout<<"Enter brand:";
+		        cin>>brand;
+		        file_<<brand;
+		        file_<<"\t\t\t";
+		        
+							  
+		cout<<"Enter Price:";
+		        cin>>price;
+		        file_<<price;
+		        file_<<"\t\t\t\t\t";
+		        
+		cout<<"Enter stock:";
+		        cin>>stock;
+		        file_<<stock;
+		        file_<<"\t\t\t";
+		        
+		        
+	      cout<<"\nDo you want to continue(press 1 to continue:)";
+          cin>>choice;
+      }while(choice==1);
+      
+	file_.close();
+	return 0;
+	std::cin.get();
+}
